@@ -5,4 +5,4 @@ services:
     envVars:
       - key: PORT
         value: 3000
-  
+    startCommand: node main.js
