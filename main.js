@@ -14,7 +14,7 @@ app.get('/verify-code', (req, res) => {
     }
 })
 
-app.post('/submit', (req, res) => {
+app.get('/submit', (req, res) => {
     fs.writeFile('data.json', JSON.stringify(req.query), (err) => {
         if (err) {
             res.status(500).send('Error saving data');
