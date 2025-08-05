@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
 
 app.get('/', (req, res) => {
@@ -11,6 +12,16 @@ app.get('/verify-code', (req, res) => {
     } else {
         res.status(400).send('Invalid code');
     }
+})
+
+app.post('/submit', (req, res) => {
+    fs.writeFile('data.json', JSON.stringify(req.query), (err) => {
+        if (err) {
+            res.status(500).send('Error saving data');
+        } else {
+            res.send('Data saved successfully');
+        }
+    });
 })
 
 app.listen(process.env.PORT, () => {
